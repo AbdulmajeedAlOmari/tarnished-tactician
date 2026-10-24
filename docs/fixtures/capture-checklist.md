@@ -12,12 +12,13 @@ This is the checklist for [Capture a Nightreign UI fixture corpus](https://githu
 
 ## 0. One-time setup
 
-- [ ] **Steam**: Settings → In Game → Screenshots. Set the hotkey to `F12` (the default) and tick **Save an uncompressed copy**. Point it at `C:\tt-fixtures\_inbox`. You'll sort files from `_inbox` after each session.
-- [ ] **OBS**:
-  - Use a **Game Capture** source on Nightreign.
-  - Settings → Video: Base and Output resolution = the game resolution, no downscaling.
+- [ ] **Steam**: Settings → In Game → Screenshots. The current client has no "Save an uncompressed copy" option, so its external copy is JPG only. Turn **off** "Save an external copy of my screenshots" and the screenshot notification. Move "Take a screenshot" off `F12`, because OBS takes the screenshots. Set the in-game FPS counter to Off.
+- [ ] **OBS** takes both the screenshots and the clips:
+  - Use a **Game Capture** source on Nightreign. With the game running, right-click the source → **Resize output (source size)**, so the canvas is exactly the game's frame.
+  - Settings → Video: Output (Scaled) resolution = Base resolution, no downscaling.
   - Settings → Output (Simple): Recording Quality = **Lossless Quality, Tremendously Large File Size**. Recording path = `C:\tt-fixtures\_inbox`.
-  - Bind a start/stop recording hotkey.
+  - Settings → Hotkeys: bind **Screenshot Output** to `F12`. It saves a PNG to the recording path. Also bind a start/stop recording hotkey.
+  - On a controller, you can map Steam Input Guide-button chords to those keys.
 - [ ] **Quiet the desktop**: turn off Discord, Steam friend and Windows notification pop-ups, except where a hard case below asks for them.
 - [ ] **HDR check**: open Windows Settings → System → Display. Note whether a **Use HDR** toggle exists. If it does, leave HDR **off** for every section except §4.
 - [ ] Note your Windows **display scale** (e.g. 100%, 125%) from the same page.
@@ -35,7 +36,7 @@ Do this at the start of every play session, and again whenever any of these chan
 
 ## 2. Surfaces at 1920×1080 (full set)
 
-Aim for the counts given. Take **distinct items** across shots so OCR is tested on different strings, not one string repeated. Screenshots are `F12`. A clip is a 5–20 s OBS recording.
+Aim for the counts given. Take **distinct items** across shots so OCR is tested on different strings, not one string repeated. Screenshots are `F12` (OBS Screenshot Output). A clip is a 5–20 s OBS recording.
 
 | ✓ | Surface ID | What to capture | Count |
 |---|---|---|---|
@@ -72,7 +73,7 @@ One instance of each surface is enough. The goal is to see how the UI scales wit
 
 ## 4. HDR sample (only if your display has HDR)
 
-- [ ] With HDR **on**, at 1080p, take one `dormant-power`, one `relic-rites` and one `negative` shot. Steam may save these tone-mapped or washed out. That's fine: the point is to see what the capture actually contains. If the display has no HDR, write "no HDR display" in `notes.md` and skip this section.
+- [ ] With HDR **on**, at 1080p, take one `dormant-power`, one `relic-rites` and one `negative` shot. OBS may save these tone-mapped or washed out. That's fine: the point is to see what the capture actually contains. If the display has no HDR, write "no HDR display" in `notes.md` and skip this section.
 
 ## 5. Open questions to answer while capturing
 
