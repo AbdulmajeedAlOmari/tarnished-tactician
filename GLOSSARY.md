@@ -21,6 +21,10 @@ _Avoid_: Suggestion, tip, advice
 A copy-pasteable string that encodes one Build so another player can import it without any server.
 _Avoid_: Build link, export string
 
+**Data Pack**:
+A versioned bundle of game reference data for one Regulation Version, pairing facts extracted from the game with the project's own authored annotations. The app always uses the newest Data Pack it can read.
+_Avoid_: Database, data file, patch data
+
 ### Game
 
 **Nightfarer**:
@@ -53,6 +57,10 @@ _Avoid_: Weapon drop, loot
 An effect carried by an Armament or granted by a Dormant Power, often tiered (+1, +2).
 _Avoid_: Perk, modifier
 
+**Relic Effect**:
+An effect carried by a Relic. It is distinct from a same-named Passive Effect on an Armament and has its own values.
+_Avoid_: Relic passive, relic perk
+
 **Curse**:
 A detrimental effect attached to some Armaments and Depth Relics.
 _Avoid_: Debuff, drawback
@@ -68,3 +76,7 @@ _Avoid_: Quality, upgrade level
 **Nightlord**:
 The final boss an expedition targets; its weakness shapes which affinities a Build wants.
 _Avoid_: Final boss
+
+**Regulation Version**:
+The version of the game's balance and item data, released separately from the game client (consoles can receive it alone); shown as "Regulation Ver." on the title screen.
+_Avoid_: Patch version, game version (for the data)
