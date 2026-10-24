@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "tt-overlay-smoke",
+  "version": "0.0.0",
+  "identifier": "dev.tarnished-tactician.overlay-smoke-prototype",
+  "build": {
+    "frontendDist": "../ui"
+  },
+  "app": {
+    "withGlobalTauri": true,
+    "security": { "csp": null },
+    "windows": [
+      {
+        "label": "companion",
+        "title": "TT overlay smoke test (PROTOTYPE)",
+        "url": "companion.html",
+        "width": 560,
+        "height": 820
+      }
+    ]
+  },
+  "bundle": {
+    "active": false,
+    "icon": ["icons/icon.ico"]
+  }
+}

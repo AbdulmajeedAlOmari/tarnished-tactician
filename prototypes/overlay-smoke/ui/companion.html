@@ -1,0 +1,71 @@
+<!doctype html>
+<!-- PROTOTYPE companion page: live readings, action buttons and the event log. -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { margin: 0; padding: 12px 16px; font: 13px/1.4 system-ui, sans-serif; background: #15171c; color: #e6e6e6; }
+  h1 { font-size: 15px; margin: 0 0 4px; }
+  .note { color: #aaa; margin: 0 0 10px; }
+  button { margin: 2px 4px 2px 0; padding: 4px 8px; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; }
+  td { padding: 2px 6px; border-bottom: 1px solid #2a2d35; vertical-align: top; }
+  td:first-child { color: #aaa; width: 170px; }
+  .bad { color: #ff6b6b; font-weight: bold; }
+  .ok { color: #8ce99a; }
+  #log { height: 220px; overflow: auto; background: #0d0e11; padding: 6px; font: 11px/1.35 Consolas, monospace; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+  <h1>TT overlay smoke test (PROTOTYPE)</h1>
+  <p class="note">The overlay appears 20 s after launch (RAM baseline first). Hotkeys are Ctrl+Shift+F6…F11; the buttons do the same.</p>
+  <div id="buttons"></div>
+  <table id="tbl"></table>
+  <div id="log"></div>
+<script>
+  const { listen } = window.__TAURI__.event;
+  const { invoke } = window.__TAURI__.core;
+  const actions = [
+    ['toggle_hud', 'F6 HUD on/off'],
+    ['native_reshow', 'F7 native hide → SW_SHOWNA'],
+    ['interactive_10s', 'F8 interactive 10 s'],
+    ['toggle_stress', 'F9 stress 60 fps'],
+    ['toggle_reassert_topmost', 'F10 re-assert topmost'],
+    ['mark_issue', 'F11 mark issue'],
+  ];
+  document.getElementById('buttons').innerHTML =
+    actions.map(([a, l]) => `<button data-a="${a}">${l}</button>`).join('');
+  document.getElementById('buttons').addEventListener('click', (e) => {
+    if (e.target.dataset.a) invoke('action', { name: e.target.dataset.a });
+  });
+
+  const row = (k, v, good) => `<tr><td>${k}</td><td class="${good === undefined ? '' : good ? 'ok' : 'bad'}">${v}</td></tr>`;
+  const ex = (w) => w ? Object.entries(w.ex).filter(([, v]) => v).map(([k]) => k).join(' ') : '-';
+
+  listen('telemetry', ({ payload: t }) => {
+    const g = t.game, o = t.overlay;
+    document.getElementById('tbl').innerHTML = [
+      row('uptime', `${t.t} s`),
+      ...t.hotkeys.map(h => row(`Ctrl+Shift ${h.name}`, `RegisterHotKey ${h.rh} · LL hook ${h.ll}`, h.rh >= h.ll)),
+      row('foreground', t.foreground ? `${t.foreground.exe} "${t.foreground.title}"` : '-'),
+      row('overlay became fg', t.overlay_became_fg, t.overlay_became_fg === 0),
+      row('game lost fg to us', t.game_lost_fg_to_us),
+      row('game window', g ? `${g.exe} ${g.rect.join('×')} on ${g.monitor.join('×')} · ${g.mode_guess} · ${ex(g)}` : 'not found'),
+      row('overlay window', o ? `${o.rect.join('×')} · ${ex(o)} · affinity ${o.display_affinity}` : 'not created yet'),
+      row('overlay above game', t.overlay_above_game ?? '-', t.overlay_above_game ?? undefined),
+      row('z-order bad samples', `${t.z_bad} / ${t.z_samples}`, t.z_bad === 0),
+      row('topmost re-asserts', `${t.reasserts} (re-assert ${t.state.reassert ? 'ON' : 'off'})`),
+      row('RAM (process tree)', `${t.mem.working_set_mb} MB ws · ${t.mem.private_mb} MB private · ${t.mem.processes} procs`),
+      row('RAM detail', t.mem.detail.map(d => `${d.exe} ${d.private_mb}`).join(', ')),
+      row('state', `hud ${t.state.hud} · stress ${t.state.stress} · interactive ${t.state.interactive}`),
+    ].join('');
+  });
+
+  const log = document.getElementById('log');
+  listen('event', ({ payload: e }) => {
+    const { snapshot, ...rest } = e;
+    log.textContent = `${JSON.stringify(rest)}\n` + log.textContent.slice(0, 20000);
+  });
+</script>
+</body>
+</html>
