@@ -2,9 +2,9 @@
 
 This is the checklist for [Capture a Nightreign UI fixture corpus](https://github.com/AbdulmajeedAlOmari/tarnished-tactician/issues/9). It gives the [Detection spike against the fixture corpus](https://github.com/AbdulmajeedAlOmari/tarnished-tactician/issues/10) real frames to test against. The surfaces come from the [itemization research](https://github.com/AbdulmajeedAlOmari/tarnished-tactician/blob/research/nightreign-itemization-and-ui/docs/research/nightreign-itemization-and-ui.md) §4. The open questions come from §6 of the same document.
 
-**Corpus location:** `C:\tt-fixtures` (`/mnt/c/tt-fixtures` from WSL). It stays **outside git**. It contains game art and other players' names, so it is never published.
+**Corpus location:** `E:\tt-fixtures` (`/mnt/e/tt-fixtures` from WSL). It stays **outside git**. It contains game art and other players' names, so it is never published.
 
-**Wizard:** run `bash /mnt/c/tt-fixtures/capture-wizard.sh` from WSL at the start of each play session. It walks through §0–§5: it records each session's settings in `notes.md`, checks that frames are lossless and the right size, files each `_inbox` batch under the naming below with its `manifest.csv` rows, and reports coverage against this list. It lives next to the corpus and isn't committed.
+**Wizard:** run `bash /mnt/e/tt-fixtures/capture-wizard.sh` from WSL at the start of each play session. It walks through §0–§5: it records each session's settings in `notes.md`, checks that frames are lossless and the right size, files each `_inbox` batch under the naming below with its `manifest.csv` rows, and reports coverage against this list. It lives next to the corpus and isn't committed.
 
 **Scope for now:** 1920×1080 and 2560×1440, Borderless Windowed, base game, normal expeditions. Deep of Night and *The Forsaken Hollows* surfaces are listed under [Later](#later-when-available). Capture them when you can, then add them to the corpus.
 
@@ -16,7 +16,7 @@ This is the checklist for [Capture a Nightreign UI fixture corpus](https://githu
 - [ ] **OBS** takes both the screenshots and the clips:
   - Use a **Game Capture** source on Nightreign. With the game running, right-click the source → **Resize output (source size)**, so the canvas is exactly the game's frame.
   - Settings → Video: Output (Scaled) resolution = Base resolution, no downscaling.
-  - Settings → Output (Simple): Recording Quality = **Lossless Quality, Tremendously Large File Size**. Recording path = `C:\tt-fixtures\_inbox`.
+  - Settings → Output (Simple): Recording Quality = **Lossless Quality, Tremendously Large File Size**. Recording path = `E:\tt-fixtures\_inbox`.
   - Settings → Hotkeys: bind **Screenshot Output** to `F12`. It saves a PNG to the recording path. Also bind a start/stop recording hotkey.
   - On a controller, you can map Steam Input Guide-button chords to those keys.
 - [ ] **Quiet the desktop**: turn off Discord, Steam friend and Windows notification pop-ups, except where a hard case below asks for them.
@@ -90,7 +90,7 @@ Write the answers in `notes.md`, citing the file that shows each one:
 Sort `_inbox` after each session:
 
 ```
-C:\tt-fixtures\
+E:\tt-fixtures\
   notes.md              per-session settings + answers to §5
   manifest.csv          one row per file
   1080p\<surface-id>\   e.g. 1080p\dormant-power\dormant-power__axe-cache-opt2__01.png
