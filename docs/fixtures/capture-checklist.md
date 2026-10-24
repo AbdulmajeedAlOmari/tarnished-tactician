@@ -111,7 +111,7 @@ When you're done, say so on the ticket. The agent then runs the inventory, check
 
 ## Later (when available)
 
-Not needed to close the ticket. Add these to the same corpus once you have them:
+These are **in v1 scope**. They're missing only because the player doesn't have access yet. They aren't needed to close the ticket, but detection for these surfaces stays unvalidated until they're captured. Add them to the same corpus once you have access:
 
 - **Deep of Night**: Depth Relics and deep slots in Relic Rites, the curse lines on armaments, the DoN Expedition screen (target hidden).
 - **The Forsaken Hollows**: DLC Nightfarers in Character Selection and Relic Rites, DLC vessels, Blacksmith Village skill reforge.
