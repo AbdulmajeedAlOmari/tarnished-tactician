@@ -5,8 +5,24 @@ A Windows desktop companion and overlay for *Elden Ring Nightreign* that recomme
 ## Language
 
 **Build**:
-A durable pre-run plan: a Nightfarer, a relic loadout (with its vessel), and priorities for weapon types, passives, talismans and affinities. Curated, user-authored, imported, or decoded from a share code.
+A durable pre-run plan for one Nightfarer: a list of Priorities over Vessels, Relics, Relic Effects, Passive Effects, talismans, Dormant Powers, weapon types and affinities. Curated, user-authored, imported, or decoded from a share code. It holds no specific owned Relics.
 _Avoid_: Loadout (for the whole plan), setup, preset
+
+**Priority**:
+One entry in a Build: something the Build cares about, plus how much (core, want, nice, or avoid).
+_Avoid_: Weight, preference, rule
+
+**Tag**:
+A project-defined concept that groups same-named effects across Relics, Armaments and talismans (e.g. critical hits), so one Priority can cover all of them.
+_Avoid_: Category, group
+
+**Relic Loadout**:
+A specific Vessel with specific owned Relics in its slots. The app recommends one from a Build and the player's Relics; a Build never stores one.
+_Avoid_: Build, setup
+
+**Curated Build**:
+A read-only Build that ships with the Data Pack; the player duplicates it to make their own editable copy.
+_Avoid_: Preset, template, starter
 
 **Run**:
 One expedition being played with a Build, and the transient state of what the player currently holds and where they are in it.
