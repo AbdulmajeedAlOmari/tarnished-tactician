@@ -4,6 +4,8 @@ This is the checklist for [Capture a Nightreign UI fixture corpus](https://githu
 
 **Corpus location:** `C:\tt-fixtures` (`/mnt/c/tt-fixtures` from WSL). It stays **outside git**. It contains game art and other players' names, so it is never published.
 
+**Wizard:** run `bash /mnt/c/tt-fixtures/capture-wizard.sh` from WSL at the start of each play session. It walks through §0–§5: it records each session's settings in `notes.md`, checks that frames are lossless and the right size, files each `_inbox` batch under the naming below with its `manifest.csv` rows, and reports coverage against this list. It lives next to the corpus and isn't committed.
+
 **Scope for now:** 1920×1080 and 2560×1440, Borderless Windowed, base game, normal expeditions. Deep of Night and *The Forsaken Hollows* surfaces are listed under [Later](#later-when-available). Capture them when you can, then add them to the corpus.
 
 ---
@@ -29,6 +31,7 @@ Do this at the start of every play session, and again whenever any of these chan
 - [ ] Any in-game display/HUD options that affect the UI (HUD on/auto, brightness, and any UI or HUD scale setting). If the game has no UI scale option, write "no UI scale option".
 - [ ] Windows display scale and HDR on/off.
 - [ ] Solo or co-op.
+- [ ] Input device. The player uses a controller about 98% of the time, so most frames show controller glyphs. Record `kbm` only on frames that show keyboard prompts.
 
 ## 2. Surfaces at 1920×1080 (full set)
 
@@ -100,10 +103,10 @@ File names follow `<surface-id>__<short-variant>__<nn>.<ext>`. Use lowercase wit
 `manifest.csv` columns:
 
 ```
-file,resolution,surface,variant,game_version,hdr,solo_coop,truth
+file,resolution,surface,variant,game_version,hdr,solo_coop,input,truth
 ```
 
-`truth` is optional. Fill it in **only** when the frame hides something the image alone can't show. Examples: "occluded text reads *Great Club of the Night*", or "this is the armament I actually picked up". Otherwise leave it blank: ground-truth labels for visible text are transcribed later by the detection spike.
+`resolution` is the frame's measured pixel size, not the in-game setting. `input` is `controller` or `kbm`, matching the button glyphs shown in the frame. `truth` is optional. Fill it in **only** when the frame hides something the image alone can't show. Examples: "occluded text reads *Great Club of the Night*", or "this is the armament I actually picked up". Otherwise leave it blank: ground-truth labels for visible text are transcribed later by the detection spike.
 
 When you're done, say so on the ticket. The agent then runs the inventory, checks the corpus against this list, and closes the ticket.
 
